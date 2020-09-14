@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>traffic light</title>
+  <style>
+    .box {
+      border: 1px solid black;
+      display: inline-flex;
+      flex-direction: column;
+      border-radius: 48px;
+      background: #666;
+    }
+
+    .circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: grey;
+    }
+
+    .red {
+      background: red;
+    }
+
+    .yellow {
+      background: yellow;
+    }
+
+    .green {
+      background: green;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="circle" id="green"></div>
+    <div class="circle" id="yellow"></div>
+    <div class="circle" id="red"></div>
+
+  </div>
+  <script>
+    // 绿灯亮10秒，黄灯亮2秒，红灯5秒无限循环
+    let $red = document.getElementById('red')
+    let $yellow = document.getElementById('yellow')
+    let $green = document.getElementById('green')
+
+    function green() {
+      $green.style.background = 'green';
+      $red.style.background = 'grey'
+      $yellow.style.background = 'grey'
+
+    }
+    function red() {
+      $red.style.background = 'red';
+      $green.style.background = 'grey'
+      $yellow.style.background = 'grey'
+
+    }
+    function yellow() {
+      $yellow.style.background = 'yellow';
+      $red.style.background = 'grey'
+      $green.style.background = 'grey'
+    }
+
+    function go() {
+      green()
+      setTimeout(() => {
+        yellow()
+        setTimeout(() => {
+          red()
+          setTimeout(() => {
+            go()
+          }, 5000)
+        }, 2000)
+      }, 10000)
+    }
+
+    go()
+
+
+  </script>
+</body>
+
+</html>
